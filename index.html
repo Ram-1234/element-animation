@@ -1,7 +1,173 @@
-<div class="white-box">
-  <div class="quote">
-    <p class="random-quote"> <span id="text"></span></p>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#outerDive{
+			position: relative;
+			width: 200px;
+			height: 200px;
+			/*border: 1px solid black;*/
+			padding: 20px;
+            text-align: center;
+            margin: 60%;
+            margin-top: 10%;
+            justify-content: space-between;
+		}
+
+		#first{
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			left: 10px;
+			top: 10px;
+			border-radius: 50px;
+			/*margin: 25px;*/
+			/*background-color: red;*/
+			z-index: 100;
+
+		}
+
+		#second{
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			right: 73px;
+			top: 10px;
+			border-radius: 50px;
+			/*margin: 25px;*/
+			/*background-color: yellow;*/
+            z-index: 90;
+		}
+
+		#thired{
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			left: 10px;
+			bottom: 75px;
+			border-radius: 50px;
+			/*margin: 25px;*/
+			/*background-color: green;*/
+		}
+
+		#fourth{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            right: 73px;
+			      bottom: 75px;
+            border-radius: 50px;
+            /*margin: 25px;*/
+            /*background-color: #00b4d8;*/
+		}
+
+		#buttons{
+			/*border: 1px solid black;*/
+			padding: 20px 15px 20px 15px;
+			display: flex;
+			position: absolute;
+            left: 0px;
+            bottom: 0px;
+            /*position: relative;*/
+		}
+			
+		button{
+			padding: 5px 10px 5px 10px;
+			background-color: #2a9d8f;
+			outline: none;
+			color: white;
+			justify-content: space-around;
+		}
+
+		#start{
+       margin-right: 24px;
+		}
+
+    #stop{
+       margin-left: 28px;
+    }
+
+	</style>
+	<title>animation page</title>
+</head>
+<body>
+<div id="outerDive">	
+
+  	<div style="background-color: red;" id="first"></div>
+  	<div style="background-color: yellow;" id="second"></div>
+  	<div style="background-color: green;" id="thired"></div>
+  	<div style="background-color: blue;" id="fourth"></div>
+
+  <div id="buttons">
+  	<button id="start">start</button>
+  	<button id="stop">stop</button>
   </div>
-  <div class="random-author">- <span id="author"></span>
-  </div>
- </div>
+</div>
+
+<!-- javascript code-->
+  <script type="text/javascript">
+  	let start=document.getElementById("start")
+  	let stop=document.getElementById("stop")
+  	
+    let id=null;
+    let pos=0;
+  	start.onclick=function(){
+  	 pos=45;
+  	let bool=true;
+  	// let id=null;
+  	let first=document.getElementById("first")
+  	let second=document.getElementById("second")
+  	let thired=document.getElementById("thired")
+  	let fourth=document.getElementById("fourth")
+
+    id=setInterval(Animate,12);
+
+    function Animate(){
+     // console.log(bool);
+	   	if(pos===155){    
+		        bool=false;
+		   //element style backgroundColor 
+		      let tem1=first.style.backgroundColor;
+		      let tem2=thired.style.backgroundColor;
+		   
+		   		first.style.backgroundColor=second.style.backgroundColor;
+		   		second.style.backgroundColor=fourth.style.backgroundColor;
+		   		thired.style.backgroundColor=tem1;
+		   		fourth.style.backgroundColor=tem2;
+	   		
+	   	}
+	   	else if(bool==true){
+	   	// reverse decrease width or height
+	     	  pos+=0.5;
+	     		first.style.width = pos + "px";
+	     		second.style.height = pos +  "px";
+	     		thired.style.height = pos + "px";
+	        fourth.style.width = pos + "px";	
+	     	}
+
+	     	if(bool==false){
+		     		if(pos==45){
+		     			bool=true;
+		     		}
+		     		else{
+		     		// reverse decrease width or height
+				      pos-=0.5;
+				   		first.style.width = pos + "px";
+				   		second.style.height = pos +  "px";
+				   		thired.style.height = pos + "px";
+				      fourth.style.width = pos + "px";
+		     		}
+	     	}
+	      
+	   }
+
+  }
+
+  	stop.onclick=function (){
+  		clearInterval(id);
+  	}
+
+  </script>
+</body>
+</html>
